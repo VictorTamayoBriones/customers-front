@@ -17,7 +17,7 @@ export const  FormCustomers = ()=> {
         <Input type="text" label="RFC" name="rfc" value={formCustomerData.rfc} onChange={(e)=>{handleDataForm(e)}} min={3} max={50}/>
         <Input type="number" label="Phone" name="phone" value={formCustomerData.phone} onChange={(e)=>{handleDataForm(e)}} min={3} max={50}/>
         <footer>
-          <Button type="submit" >Create</Button>
+          <Button type="submit" >{formConfig.action === 'create' ? 'Create' : 'Udpate'}</Button>
           <div className='btn-cancel'  onClick={()=>handleFormVisible(false)} >
             <Button type="button">Cancel</Button>
           </div>

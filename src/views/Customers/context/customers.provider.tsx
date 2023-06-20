@@ -5,6 +5,7 @@ import { createCustomer } from "@/api/services/customers/createCustomer.service"
 import { ICustomer } from "@/models/customer.models";
 import { getCustomers } from "@/api/services/customers/getCustomers.service";
 import { deleteCustomer } from '../../../api/services/customers/deleteCustomer.service';
+import { updateCustomer } from "@/api/services/customers/updateCustomer.service";
 
 interface Props{
     children: JSX.Element
@@ -12,7 +13,7 @@ interface Props{
 
 export const CustomerProvider = ({children}:Props) =>{
     const [customersList, setCustomersList]=useState<ICustomer[]>([])
-
+    const [idToUpdate, setIdToUpdate]=useState<string>('');
     const loadCustomersList = async () =>{
         const res = await getCustomers()
         setCustomersList(res.data);
@@ -28,9 +29,20 @@ export const CustomerProvider = ({children}:Props) =>{
         
     }
 
+    const updateCustomerById = async(data: ICustomerFormdata,id: string)=>{
+        setFormConfig({
+            action: 'update',
+            title: 'Update customer'
+        });
+        setFormIsVisible(true);
+        setFormCustomerData(data);
+        setIdToUpdate(id);
+    }
+
     useEffect(()=>{
         loadCustomersList();
     },[])
+
     const [formIsVisible, setFormIsVisible]=useState<boolean>(false)
     const [formCustomerData, setFormCustomerData]=useState<ICustomerFormdata>({
         full_name: '',
@@ -65,11 +77,19 @@ export const CustomerProvider = ({children}:Props) =>{
                 alert('Created Succesfully');
             }
         }
+        if(formConfig.action === 'update'){
+            const res = await updateCustomer(formCustomerData, idToUpdate);
+            if(res.status === 200){
+                loadCustomersList();
+                setFormIsVisible(false);
+                alert('Updated Succesfully');
+            }
+        }
     }
     
     
     return(
-        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid}} >
+        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid, updateCustomerById}} >
             {children}
         </CustomerContext.Provider>
     )

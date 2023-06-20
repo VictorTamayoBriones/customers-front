@@ -6,9 +6,9 @@ import { Icons } from "@/assets/icons/Icons";
 import { useContext } from 'react';
 import { CustomerContext } from "../../context/customers.context";
 
-function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, indexRecord }:ICustomer) {
+function ItemCustomer({ id, full_name, nss, rfc, phone, versions, indexRecord }:ICustomer) {
     const INDEX = indexRecord != null ? indexRecord + 1 : '';
-    const { deleteCustomerByid } = useContext(CustomerContext);
+    const { deleteCustomerByid, updateCustomerById } = useContext(CustomerContext);
 
   return (
     <ItemCustomerContainer>
@@ -17,10 +17,9 @@ function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, index
             <div><p>{full_name}</p></div>
             <div><p>{nss}</p></div>
             <div><p>{rfc}</p></div>
-            <div><p>{address}</p></div>
             <div><p>{phone}</p></div>
             <div>
-                <div className="btn-edit" ><Button type="button">{<Icons.edit/>}</Button></div>
+                <div className="btn-edit" onClick={()=>updateCustomerById({full_name, nss:Number(nss), rfc, phone},id)} ><Button type="button">{<Icons.edit/>}</Button></div>
                 <div className="btn-delete" onClick={()=>deleteCustomerByid(id)} ><Button type="button">{<Icons.delete/>}</Button></div>
             </div>
         </div>
