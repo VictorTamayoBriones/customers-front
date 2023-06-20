@@ -3,8 +3,8 @@ import { IUser } from "@/models/user.model";
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE: IUser = {
-    id: '',
-    user: ""
+    id: sessionStorage.getItem('id') || '',
+    user: sessionStorage.getItem('user') || ''
 }
 
 export const UserSlice = createSlice({

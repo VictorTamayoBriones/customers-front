@@ -1,7 +1,12 @@
+import TableCustomers from "./components/TableCustomers/TableCustomers"
+import { CustomersContainer } from "./customers.style"
 
 function Customers() {
+
   return (
-    <div>Customers</div>
+    <CustomersContainer>
+      <TableCustomers/>
+    </CustomersContainer>
   )
 }
 
