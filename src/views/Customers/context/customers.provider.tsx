@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { createCustomer } from "@/api/services/customers/createCustomer.service";
 import { ICustomer } from "@/models/customer.models";
 import { getCustomers } from "@/api/services/customers/getCustomers.service";
+import { deleteCustomer } from '../../../api/services/customers/deleteCustomer.service';
 
 interface Props{
     children: JSX.Element
@@ -15,6 +16,16 @@ export const CustomerProvider = ({children}:Props) =>{
     const loadCustomersList = async () =>{
         const res = await getCustomers()
         setCustomersList(res.data);
+    }
+
+    const deleteCustomerByid = async(id: string)=>{
+        if(confirm('Confirm you want to delete')){
+            const res = await deleteCustomer(id);
+            if(res.status === 200){
+                loadCustomersList()
+            }
+        }
+        
     }
 
     useEffect(()=>{
@@ -58,7 +69,7 @@ export const CustomerProvider = ({children}:Props) =>{
     
     
     return(
-        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList}} >
+        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid}} >
             {children}
         </CustomerContext.Provider>
     )

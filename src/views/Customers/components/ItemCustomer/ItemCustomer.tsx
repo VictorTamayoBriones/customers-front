@@ -3,11 +3,15 @@ import { IVersions } from '../../../../models/customer.models';
 import { ItemCustomerContainer } from "./itemCustomer.style";
 import Button from "@/components/Button/Button";
 import { Icons } from "@/assets/icons/Icons";
+import { useContext } from 'react';
+import { CustomerContext } from "../../context/customers.context";
 
 function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, indexRecord }:ICustomer) {
-    const INDEX = indexRecord != null ? indexRecord + 1 : '' 
+    const INDEX = indexRecord != null ? indexRecord + 1 : '';
+    const { deleteCustomerByid } = useContext(CustomerContext);
+
   return (
-    <ItemCustomerContainer id={id} >
+    <ItemCustomerContainer>
         <div className="main-record">
             <div><p>{ INDEX }</p></div>
             <div><p>{full_name}</p></div>
@@ -17,7 +21,7 @@ function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, index
             <div><p>{phone}</p></div>
             <div>
                 <div className="btn-edit" ><Button type="button">{<Icons.edit/>}</Button></div>
-                <div className="btn-delete" ><Button type="button">{<Icons.delete/>}</Button></div>
+                <div className="btn-delete" onClick={()=>deleteCustomerByid(id)} ><Button type="button">{<Icons.delete/>}</Button></div>
             </div>
         </div>
         <div className="versions">

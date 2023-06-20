@@ -10,7 +10,8 @@ interface CustomersState{
     handleSubmit: (e:React.FormEvent<HTMLFormElement>)=>void,
     handleFormVisible: (value: boolean) => void,
     handleFormConfig: (config: ICustomerForm)=>void,
-    customersList: ICustomer[]
+    customersList: ICustomer[],
+    deleteCustomerByid: (id:string)=>void
 }
 
 export const CustomerContext = React.createContext({} as CustomersState);
