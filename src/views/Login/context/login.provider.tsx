@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 import { LoginContext } from "./login.context"
 import { ILoginDataForm } from "@/models/login.model"
+import { authUser } from "@/api/services"
 
 interface Props{
     children: JSX.Element | JSX.Element[]
 }
 
 export const LoginProvider = ({ children }:Props)=>{
+
+    // const dispatch = 
 
     const [dataLoginForm, setDataLoginForm]=useState<ILoginDataForm>({
         user: '',
@@ -20,9 +23,16 @@ export const LoginProvider = ({ children }:Props)=>{
         })
     }
 
-    const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    const handleLoginSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
-        console.log('first')
+
+        if(dataLoginForm.user != '' && dataLoginForm.password != ''){
+            await authUser(dataLoginForm)
+                .then(res =>{
+                    console.log(res);
+                })
+                .catch(err => console.log(err.response.data.message))
+        }
     }
 
     return(

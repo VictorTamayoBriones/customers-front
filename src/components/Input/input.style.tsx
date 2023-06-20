@@ -21,7 +21,7 @@ export const InputContainer = styled.section`
         height: 30px;
         padding: 0 5px;
         &:focus~label{
-            transform: translateX(0px) translateY(-55px);
+            transform: translateX(0px) translateY(-55px) !important;
             color: ${Theme.azul};
         }
         &:valid~label{
