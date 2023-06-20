@@ -1,12 +1,15 @@
-import TableCustomers from "./components/TableCustomers/TableCustomers"
+import MainCustomers from "./MainCustomers"
+import { CustomerProvider } from "./context/customers.provider"
 import { CustomersContainer } from "./customers.style"
 
 function Customers() {
 
   return (
-    <CustomersContainer>
-      <TableCustomers/>
-    </CustomersContainer>
+    <CustomerProvider>
+      <CustomersContainer>
+        <MainCustomers/>
+      </CustomersContainer>
+    </CustomerProvider>
   )
 }
 

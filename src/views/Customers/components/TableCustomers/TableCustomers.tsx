@@ -1,20 +1,13 @@
-import { getCustomers } from '@/api/services/customers/getCustomers.service';
 import { ICustomer } from '@/models/customer.models';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import ItemCustomer from '../ItemCustomer/ItemCustomer';
 import { TableContainer } from './tableCustomer.style';
+import { CustomerContext } from '../../context/customers.context';
 
 
 function TableCustomers() {
 
-  const [customersList, setCustomersList]=useState<ICustomer[]>([])
-
-  useEffect(()=>{
-    (async()=>{
-      const res = await getCustomers()
-      setCustomersList(res.data);
-    })();
-  },[])
+  const { customersList } = useContext(CustomerContext)
 
   return (
     <TableContainer>

@@ -12,10 +12,7 @@ export const ItemCustomerContainer = styled.div`
         align-items: center;
         border-top: solid 1px ${Theme.grisMedio};
         border-bottom: solid 1px ${Theme.grisMedio};
-        &:hover{
-            background: ${Theme.grisClaro};
-            cursor: pointer;
-        }
+        
         div{
             padding: 10px 0;
             min-width: 200px;
