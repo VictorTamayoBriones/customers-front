@@ -2,7 +2,10 @@ import React, { useState } from "react"
 import { LoginContext } from "./login.context"
 import { ILoginDataForm } from "@/models/login.model"
 import { authUser } from "@/api/services"
-
+import { useDispatch } from 'react-redux';
+import { saveSessionUser } from "@/redux/states/userSlice";
+import { useNavigate } from "react-router-dom"
+import { PRIVATE_ROUTES } from "@/models/routes.model";
 
 interface Props{
     children: JSX.Element | JSX.Element[]
@@ -10,7 +13,8 @@ interface Props{
 
 export const LoginProvider = ({ children }:Props)=>{
 
-    // const dispatch = 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [dataLoginForm, setDataLoginForm]=useState<ILoginDataForm>({
         user: '',
@@ -30,8 +34,10 @@ export const LoginProvider = ({ children }:Props)=>{
         if(dataLoginForm.user != '' && dataLoginForm.password != ''){
             await authUser(dataLoginForm)
                 .then(res =>{
-                    console.log(res);
-                    
+                    if(res?.id && res.user){
+                        dispatch(saveSessionUser(res));
+                        navigate(PRIVATE_ROUTES.CUSTOMERS);
+                    }  
                 })
                 .catch(err => alert(err.response.data.message))
         }

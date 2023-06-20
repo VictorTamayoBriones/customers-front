@@ -11,12 +11,10 @@ export const UserSlice = createSlice({
     name: "user",
     initialState: INITIAL_STATE,
     reducers: {
-        saveSessionUser: (state, action)=>{
-            state.id = action.payload.id
-            state.id = action.payload.user
-            
+        saveSessionUser: (_state, action)=>{            
             sessionStorage.setItem("id", action.payload.id);
             sessionStorage.setItem("user", action.payload.user);
+            return action.payload
         },
         logout: (state)=>{
             state.id = INITIAL_STATE.id;
