@@ -3,4 +3,5 @@ export const Theme = {
     grisMedio:'#bdbdbd',
     azul: '#0371d1',
     red: '#d10303',
+    green: '#15af04',
 }

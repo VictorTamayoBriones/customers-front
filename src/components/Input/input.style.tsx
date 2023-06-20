@@ -19,16 +19,22 @@ export const InputContainer = styled.section`
 
     input{
         height: 30px;
+        padding: 0 5px;
         &:focus~label{
             transform: translateX(0px) translateY(-55px);
             color: ${Theme.azul};
         }
-        &:valid~span{
-            transform: translateX(-10px) translateY(-32px);
+        &:valid~label{
+            transform: translateX(0px) translateY(-55px) !important;
+            color: ${Theme.green} !important;
         }
-        &:invalid~span{
-            transform: translateX(-10px) translateY(-32px);
+        &:invalid~label{
+            transform: translateX(0px) translateY(-55px);
             color: ${Theme.red};
+        }
+        &:empty~label{
+            transform: translateX(5px) translateY(-25px);
+            color: ${Theme.azul};
         }
     }
 `;
