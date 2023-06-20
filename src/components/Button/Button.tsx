@@ -1,7 +1,7 @@
 import { ButtonContainer } from "./button.style"
 
 interface Props{
-  children: string,
+  children: string | JSX.Element | React.ReactNode,
   type: 'button' | 'submit'
 }
 

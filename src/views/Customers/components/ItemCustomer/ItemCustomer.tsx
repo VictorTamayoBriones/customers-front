@@ -1,6 +1,8 @@
 import { ICustomer } from "@/models/customer.models"
 import { IVersions } from '../../../../models/customer.models';
 import { ItemCustomerContainer } from "./itemCustomer.style";
+import Button from "@/components/Button/Button";
+import { Icons } from "@/assets/icons/Icons";
 
 function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, indexRecord }:ICustomer) {
     const INDEX = indexRecord != null ? indexRecord + 1 : '' 
@@ -13,6 +15,10 @@ function ItemCustomer({ id, full_name, nss, rfc, address, phone, versions, index
             <div><p>{rfc}</p></div>
             <div><p>{address}</p></div>
             <div><p>{phone}</p></div>
+            <div>
+                <div className="btn-edit" ><Button type="button">{<Icons.edit/>}</Button></div>
+                <div className="btn-delete" ><Button type="button">{<Icons.delete/>}</Button></div>
+            </div>
         </div>
         <div className="versions">
             {
