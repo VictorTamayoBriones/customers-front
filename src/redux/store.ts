@@ -9,6 +9,6 @@ export interface AppStore{
 
 export default configureStore({
     reducer: {
-        user: UserSlice,
+        user: UserSlice
     },
 })

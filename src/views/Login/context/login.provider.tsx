@@ -3,6 +3,7 @@ import { LoginContext } from "./login.context"
 import { ILoginDataForm } from "@/models/login.model"
 import { authUser } from "@/api/services"
 
+
 interface Props{
     children: JSX.Element | JSX.Element[]
 }
@@ -30,8 +31,9 @@ export const LoginProvider = ({ children }:Props)=>{
             await authUser(dataLoginForm)
                 .then(res =>{
                     console.log(res);
+                    
                 })
-                .catch(err => console.log(err.response.data.message))
+                .catch(err => alert(err.response.data.message))
         }
     }
 
