@@ -1,17 +1,14 @@
-import { LoginContainer, LoginForm } from "./login.style"
+import { LoginContainer } from "./login.style"
 import { LoginProvider } from "./context/login.provider"
-import { Inputs, LoginHeader, UserCircle } from "./components"
+import FormLogin from "./components/FormLogin/FormLogin"
 
 
 function Login() {
+
   return (
     <LoginContainer>
       <LoginProvider>
-        <LoginForm>
-          <LoginHeader/>
-          <UserCircle/>
-          <Inputs/>
-        </LoginForm>
+        <FormLogin/>
       </LoginProvider>
     </LoginContainer>
   )

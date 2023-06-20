@@ -22,6 +22,7 @@ export const LoginProvider = ({ children }:Props)=>{
 
     const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        console.log('first')
     }
 
     return(
