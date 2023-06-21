@@ -8,7 +8,7 @@ import { CustomerContext } from "../../context/customers.context";
 
 function ItemCustomer({ id, full_name, nss, rfc, phone, versions, indexRecord }:ICustomer) {
     const INDEX = indexRecord != null ? indexRecord + 1 : '';
-    const { deleteCustomerByid, updateCustomerById } = useContext(CustomerContext);
+    const { deleteCustomerByid, updateCustomerById, resetVersionById } = useContext(CustomerContext);
 
   return (
     <ItemCustomerContainer>
@@ -27,13 +27,13 @@ function ItemCustomer({ id, full_name, nss, rfc, phone, versions, indexRecord }:
             {
                 versions.map((version:IVersions)=>{
                     return(
-                        <div className="version">
+                        <div className="version" key={version.id} >
                             <div><p>-</p></div>
                             <div><p>{version.full_name}</p></div>
                             <div><p>{version.nss}</p></div>
                             <div><p>{version.rfc}</p></div>
                             <div><p>{version.phone}</p></div>
-                            <div className="button" >
+                            <div onClick={()=>resetVersionById(version.id)} >
                                 <Button type="button" >Use this version</Button>
                             </div>
                         </div>

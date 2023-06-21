@@ -6,6 +6,7 @@ import { ICustomer } from "@/models/customer.models";
 import { getCustomers } from "@/api/services/customers/getCustomers.service";
 import { deleteCustomer } from '../../../api/services/customers/deleteCustomer.service';
 import { updateCustomer } from "@/api/services/customers/updateCustomer.service";
+import { resetVersion } from "@/api/services/customers/resetVersion.service";
 
 interface Props{
     children: JSX.Element
@@ -14,6 +15,7 @@ interface Props{
 export const CustomerProvider = ({children}:Props) =>{
     const [customersList, setCustomersList]=useState<ICustomer[]>([])
     const [idToUpdate, setIdToUpdate]=useState<string>('');
+
     const loadCustomersList = async () =>{
         const res = await getCustomers()
         setCustomersList(res.data);
@@ -87,9 +89,16 @@ export const CustomerProvider = ({children}:Props) =>{
         }
     }
     
-    
+    const resetVersionById = async (id:string) =>{
+        const res = await resetVersion(id);
+        if(res.status === 200){
+            loadCustomersList();
+            alert('Reset Succesfully');
+        }
+    }
+
     return(
-        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid, updateCustomerById}} >
+        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid, updateCustomerById, resetVersionById}} >
             {children}
         </CustomerContext.Provider>
     )

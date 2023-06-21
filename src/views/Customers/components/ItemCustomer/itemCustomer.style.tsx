@@ -66,14 +66,4 @@ export const ItemCustomerContainer = styled.div`
             padding: 5px;
         }
     }
-
-    /* 
-    <div className="version">
-        <div><p>{version.full_name}</p></div>
-        <div><p>{version.nss}</p></div>
-        <div><p>{version.rfc}</p></div>
-        <div><p>{version.address}</p></div>
-        <div><p>{version.phone}</p></div>
-    </div> 
-    */
 `;

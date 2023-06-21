@@ -12,7 +12,8 @@ interface CustomersState{
     handleFormConfig: (config: ICustomerForm)=>void,
     customersList: ICustomer[],
     deleteCustomerByid: (id:string)=>void,
-    updateCustomerById: (data:ICustomerFormdata, id:string)=>void
+    updateCustomerById: (data:ICustomerFormdata, id:string)=>void,
+    resetVersionById: (id: string)=>void
 }
 
 export const CustomerContext = React.createContext({} as CustomersState);
