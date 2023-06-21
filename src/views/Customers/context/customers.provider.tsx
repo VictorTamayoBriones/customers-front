@@ -7,6 +7,8 @@ import { getCustomers } from "@/api/services/customers/getCustomers.service";
 import { deleteCustomer } from '../../../api/services/customers/deleteCustomer.service';
 import { updateCustomer } from "@/api/services/customers/updateCustomer.service";
 import { resetVersion } from "@/api/services/customers/resetVersion.service";
+import { getCustomersDeleted } from "@/api/services/customers/getCustomersDeleted.service";
+import { takeOutTrahs } from "@/api/services/customers/takeOutTrash.service";
 
 interface Props{
     children: JSX.Element
@@ -14,11 +16,17 @@ interface Props{
 
 export const CustomerProvider = ({children}:Props) =>{
     const [customersList, setCustomersList]=useState<ICustomer[]>([])
+    const [customersDeletedList, setCustomersDeletedList]=useState<ICustomer[]>([])
     const [idToUpdate, setIdToUpdate]=useState<string>('');
 
     const loadCustomersList = async () =>{
         const res = await getCustomers()
         setCustomersList(res.data);
+    }
+
+    const loadCustomersDeletedList = async () =>{
+        const res = await getCustomersDeleted()
+        setCustomersDeletedList(res.data);
     }
 
     const deleteCustomerByid = async(id: string)=>{
@@ -43,6 +51,7 @@ export const CustomerProvider = ({children}:Props) =>{
 
     useEffect(()=>{
         loadCustomersList();
+        loadCustomersDeletedList();
     },[])
 
     const [formIsVisible, setFormIsVisible]=useState<boolean>(false)
@@ -97,8 +106,17 @@ export const CustomerProvider = ({children}:Props) =>{
         }
     }
 
+    const takeOutTrashById = async(id:string)=>{
+        const res = await takeOutTrahs(id);
+        if(res.status === 200){
+            loadCustomersDeletedList();
+            loadCustomersList();
+            alert('Reset Succesfully');
+        }
+    }
+
     return(
-        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid, updateCustomerById, resetVersionById}} >
+        <CustomerContext.Provider value={{formIsVisible, formCustomerData, handleDataForm, handleSubmit, formConfig, handleFormVisible, handleFormConfig, customersList, deleteCustomerByid, updateCustomerById, resetVersionById, customersDeletedList, takeOutTrashById}} >
             {children}
         </CustomerContext.Provider>
     )
