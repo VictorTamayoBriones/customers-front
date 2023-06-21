@@ -17,10 +17,11 @@ export const UserSlice = createSlice({
             return action.payload
         },
         logout: (state)=>{
-            state.id = INITIAL_STATE.id;
-            state.user = INITIAL_STATE.user;
+            sessionStorage.clear();
 
-            sessionStorage.clear()
+            state.id = '';
+            state.user = '';
+
         }
         
     }

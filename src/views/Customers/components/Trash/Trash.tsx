@@ -15,7 +15,7 @@ function Trash() {
         {
             customersDeletedList.map((customer: ICustomer)=>{
                 return(
-                    <div>
+                    <div key={`${customer.id}-trash`} >
                         <p>Name: {customer.full_name}</p>
                         <p>NSS: {customer.nss}</p>
                         <p>RFC: {customer.rfc}</p>

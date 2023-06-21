@@ -1,3 +1,4 @@
+import { Theme } from '@/theme';
 import styled from 'styled-components';
 
 export const CustomersContainer = styled.div`
@@ -10,6 +11,16 @@ export const CustomersContainer = styled.div`
             position: absolute;
             top: 10px;
             right: 10px;
+        }
+    }
+
+    .btnCloseSession{
+        button{
+            width: 120px !important;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background: ${Theme.red};
         }
     }
 `;

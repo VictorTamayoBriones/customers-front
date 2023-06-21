@@ -4,6 +4,7 @@ import { FormCustomers } from './components/FormCustomers/FormCustomers'
 import { useContext } from 'react';
 import { CustomerContext } from './context/customers.context';
 import Trash from './components/Trash/Trash';
+import BtnCloseSession from './components/BtnCloseSession/BtnCloseSession';
 
 function MainCustomers() {
     const { formIsVisible } = useContext(CustomerContext)
@@ -11,6 +12,7 @@ function MainCustomers() {
   return (
     <>
       <BtnCreateCustoner/>
+      <BtnCloseSession/>
       <TableCustomers/>
       <Trash/>
       { formIsVisible &&  <FormCustomers/>}
