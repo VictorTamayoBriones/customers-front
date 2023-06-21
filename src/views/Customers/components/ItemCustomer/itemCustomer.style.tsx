@@ -5,20 +5,12 @@ export const ItemCustomerContainer = styled.div`
     width: 100%;
     margin: 10px 0;
     
-    
     .main-record{
-        display: flex;
-        justify-content: space-between;
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-items: center;
         align-items: center;
-        border-top: solid 1px ${Theme.grisMedio};
-        border-bottom: solid 1px ${Theme.grisMedio};
-        
-        div{
-            padding: 10px 0;
-            min-width: 200px;
-            overflow: scroll;
-            text-align: center;
-        }
     }
     div{
         div:has(.btn-delete){
@@ -60,4 +52,28 @@ export const ItemCustomerContainer = styled.div`
             }
         }
     }
+
+    .version{
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-items: center;
+        background: #00808052;
+        align-items: center;
+        border-top: solid 1px teal;
+        border-bottom: solid 1px teal;
+        button{
+            padding: 5px;
+        }
+    }
+
+    /* 
+    <div className="version">
+        <div><p>{version.full_name}</p></div>
+        <div><p>{version.nss}</p></div>
+        <div><p>{version.rfc}</p></div>
+        <div><p>{version.address}</p></div>
+        <div><p>{version.phone}</p></div>
+    </div> 
+    */
 `;

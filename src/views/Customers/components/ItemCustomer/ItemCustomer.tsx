@@ -13,7 +13,7 @@ function ItemCustomer({ id, full_name, nss, rfc, phone, versions, indexRecord }:
   return (
     <ItemCustomerContainer>
         <div className="main-record">
-            <div><p>{ INDEX }</p></div>
+            <div ><p>{ INDEX }</p></div>
             <div><p>{full_name}</p></div>
             <div><p>{nss}</p></div>
             <div><p>{rfc}</p></div>
@@ -28,11 +28,14 @@ function ItemCustomer({ id, full_name, nss, rfc, phone, versions, indexRecord }:
                 versions.map((version:IVersions)=>{
                     return(
                         <div className="version">
+                            <div><p>-</p></div>
                             <div><p>{version.full_name}</p></div>
                             <div><p>{version.nss}</p></div>
                             <div><p>{version.rfc}</p></div>
-                            <div><p>{version.address}</p></div>
                             <div><p>{version.phone}</p></div>
+                            <div className="button" >
+                                <Button type="button" >Use this version</Button>
+                            </div>
                         </div>
                     )
                 })
